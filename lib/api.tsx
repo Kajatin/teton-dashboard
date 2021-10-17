@@ -43,6 +43,5 @@ export async function getBalenaDevicesForFleet(fleet: number = null) {
     const url = 'https://api.balena-cloud.com/v6/device?\$filter=belongs_to__application eq ' + fleet
 
     const data = await fetchAPI(url)
-    console.log(data.d)
     return data.d
 }

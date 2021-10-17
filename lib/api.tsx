@@ -45,3 +45,10 @@ export async function getBalenaDevicesForFleet(fleet: number = null) {
     const data = await fetchAPI(url)
     return data.d
 }
+
+export async function getDeviceEnvironmentVariables(device: number) {
+    const url = 'https://api.balena-cloud.com/v6/device_environment_variable?\$filter=device eq ' + device
+
+    const data = await fetchAPI(url)
+    return data.d
+}

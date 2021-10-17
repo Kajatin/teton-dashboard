@@ -12,3 +12,22 @@
 .card:focus {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
+.button {
+    background-color: #059668; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: background-color 0.15s ease,
+}
+
+.button:hover,
+.button:active,
+.button:focus {
+    background-color: #065f46;
+}

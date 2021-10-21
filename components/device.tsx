@@ -24,6 +24,7 @@ export default function Device(props: { device: IDevice }) {
         <div className={styles.card}>
             <h1>{props.device?.device_name}</h1>
             <p>{props.device?.is_online ? "Online" : "Offline"}</p>
+            <p>{props.device?.cpu_temp}</p>
             <button className={styles.button} onClick={openLiveFeedForDevice}>Live feed</button>
         </div>
     )

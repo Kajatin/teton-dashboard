@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from '../styles/Device.module.css'
 import IDevice from '../types/IDevice'
 import { getDeviceEnvironmentVariables } from '../lib/api'
@@ -21,11 +22,13 @@ export default function Device(props: { device: IDevice }) {
     }
 
     return (
-        <div className={styles.card}>
-            <h1>{props.device?.device_name}</h1>
-            <p>{props.device?.is_online ? "Online" : "Offline"}</p>
-            <p>{props.device?.cpu_temp}</p>
-            <button className={styles.button} onClick={openLiveFeedForDevice}>Live feed</button>
-        </div>
+        <Link href={`/device/${props.device?.id}`}>
+            <div className={styles.card}>
+                <h1>{props.device?.device_name}</h1>
+                <p>{props.device?.is_online ? "Online" : "Offline"}</p>
+                <p>{props.device?.cpu_temp}</p>
+                <button className={styles.button} onClick={openLiveFeedForDevice}>Live feed</button>
+            </div>
+        </Link>
     )
 }

@@ -1,105 +1,80 @@
 .card {
-    position: relative;
-    margin: 10px;
-    width: 240px;
-    height: 204px;
-    /* border: 1px solid #eaeaea; */
-    background: #FFFFFF;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5em 13em;
+    grid-template-areas: "topbar" "content";
+
+    margin: 0.9em;
+    border-radius: 0.9em;
+    background: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    transition: color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.card .topbar {
+    grid-area: topbar;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    
+    padding: 1em;
+    background: #E8E8E8;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card .topbar .connection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.card .topbar .connection .dotonline {
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 100%;
+    margin-right: 0.5em;
+    background: #6ACE8C;
+}
+
+.card .topbar .connection .dotoffline {
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 100%;
+    background: #F47F66;
+}
+
+.card .topbar .connection .status {
+    font-size: 0.7em;
+    color: #545454;
+}
+
+.card .topbar .name {
+    font-size: 1.6em;
+
+    margin-top: 0.3em;
+
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.card .content {
+    grid-area: content; 
+    padding: 0.9em;
 }
 
 .card:hover,
 .card:active,
 .card:focus {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.card .topbar {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 220px;
-    height: 35px;
-    padding: 10px;
-    background: #E8E8E8;
-    border-radius: 10px 10px 0px 0px;
-}
-
-.card .topbar .name {
-    position: absolute;
-    left: 10px;
-    top: 25px;
-
-    font-family: Noto Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 25px;
-
-    display: flex;
-    align-items: center;
-}
-
-.card .topbar .connection {
-    position: absolute;
-    width: 38px;
-    height: 11px;
-    left: 10px;
-    top: 10px;
-}
-
-.card .topbar .connection .dotonline {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    left: 0px;
-    top: 2px;
-    border-radius: 100%;
-
-    background: #6ACE8C;
-}
-
-.card .topbar .connection .dotoffline {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    left: 0px;
-    top: 2px;
-    border-radius: 100%;
-
-    background: #F47F66;
-}
-
-.card .topbar .connection .status {
-    position: absolute;
-    width: 25px;
-    height: 11px;
-    left: 13px;
-    top: 0px;
-
-    font-family: Noto Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 8px;
-    line-height: 11px;
-    /* identical to box height */
-
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #545454;
-}
-
-.card .content {
-    position: absolute;
-    left: 0px;
-    top: 35px;
-    width: 220px;
-    height: 129px;
-    padding: 10px;
 }
 
 .button {

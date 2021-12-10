@@ -15,6 +15,7 @@ export default function Home() {
             <Head>
                 <title>Teton Dashboard</title>
                 <link rel="icon" href="/favicon.ico" />
+                <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet' />
             </Head>
 
             <main>

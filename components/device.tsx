@@ -24,10 +24,19 @@ export default function Device(props: { device: IDevice }) {
     return (
         <Link href={`/device/${props.device?.id}`}>
             <div className={styles.card}>
-                <h1>{props.device?.device_name}</h1>
-                <p>{props.device?.is_online ? "Online" : "Offline"}</p>
-                <p>{props.device?.cpu_temp}</p>
-                <button className={styles.button} onClick={openLiveFeedForDevice}>Live feed</button>
+                <div className={styles.topbar}>
+                    <div className={styles.connection}>
+                        <div className={props.device?.is_online ? styles.dotonline : styles.dotoffline}></div>
+                        <div className={styles.status}>
+                            {props.device?.is_online ? "Online" : "Offline"}
+                        </div>
+                    </div>
+                    <div className={styles.name}>{props.device?.device_name}</div>
+                </div>
+                <div className={styles.content}>
+                    <p>{props.device?.cpu_temp}</p>
+                </div>
+                {/* <button className={styles.button} onClick={openLiveFeedForDevice}>Live feed</button> */}
             </div>
         </Link>
     )

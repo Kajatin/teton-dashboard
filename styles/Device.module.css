@@ -67,8 +67,40 @@
 }
 
 .card .content {
-    grid-area: content; 
-    padding: 0.9em;
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    
+    padding: 1em;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.card .content .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.card .content .controls .release {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.card .content .controls .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 1em;
+    justify-self: end;
+}
+
+.card .content .indicators {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 .card:hover,
@@ -80,8 +112,7 @@
 .button {
     background-color: #059668; /* Green */
     border: none;
-    color: white;
-    padding: 10px 18px;
+    padding: 1em;
     text-align: center;
     text-decoration: none;
     display: inline-block;

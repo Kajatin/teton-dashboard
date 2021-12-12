@@ -1,0 +1,27 @@
+.indicator {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1em;
+
+    margin: 0.9em 0em 0.9em 0em;
+}
+
+.indicator .icon {
+    justify-self: start;
+
+    padding: 0.7em;
+    background: #E8E8E8;
+}
+
+.indicator .bar {
+    justify-self: stretch;
+
+    border-radius: 1em;
+    background: #E8E8E8;
+}
+
+.indicator .bar .amount {
+    padding: 0.7em;
+    border-radius: 1em;
+    background: green;
+}

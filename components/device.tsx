@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Indicator from './indicator'
 import styles from '../styles/Device.module.css'
 import IDevice from '../types/IDevice'
 import { getDeviceEnvironmentVariables } from '../lib/api'
@@ -34,9 +35,23 @@ export default function Device(props: { device: IDevice }) {
                     <div className={styles.name}>{props.device?.device_name}</div>
                 </div>
                 <div className={styles.content}>
-                    <p>{props.device?.cpu_temp}</p>
+                    <div className={styles.controls}>
+                        <div className={styles.release}>
+                            {props.device?.id}
+                        </div>
+                        <div className={styles.buttons}>
+                            <button className={styles.button} onClick={openLiveFeedForDevice}></button>
+                            <div>
+                                {props.device?.id}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.indicators}>
+                        <Indicator percentage={props.device?.cpu_usage}/>
+                        <Indicator percentage={props.device?.memory_usage / props.device?.memory_total * 100}/>
+                        <Indicator percentage={props.device?.cpu_temp}/>
+                    </div>
                 </div>
-                {/* <button className={styles.button} onClick={openLiveFeedForDevice}>Live feed</button> */}
             </div>
         </Link>
     )

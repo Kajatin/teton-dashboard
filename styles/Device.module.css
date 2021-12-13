@@ -55,7 +55,13 @@
     color: #545454;
 }
 
-.card .topbar .name {
+.card .topbar .second_row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+}
+
+.card .topbar .second_row .name {
     font-size: 1.6em;
 
     margin-top: 0.3em;
@@ -64,6 +70,38 @@
     align-items: left;
     justify-content: left;
     flex-direction: column;
+}
+
+.card .topbar .second_row .bed {
+    font-size: 1.6em;
+
+    margin-top: 0.3em;
+
+    display: grid;
+    align-content: end;
+    grid-template-columns: 0.6em 2.28em;
+    /* grid-template-rows: 1.2em; */
+    grid-template-rows: 1.2em;
+    gap: 0.1em;
+    justify-self: end;
+    padding-bottom: 0.07em;
+}
+
+.card .topbar .second_row .bed .pillow {
+    background: #C4C4C4;
+    border-radius: 0.18em;
+}
+
+.card .topbar .second_row .bed .matress {
+    background: #C4C4C4;
+    border-radius: 0.18em;
+    
+    color: #545454;
+    font-size: 0.7em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card .content {
@@ -91,9 +129,9 @@
 
 .card .content .controls .buttons {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 1em;
+    grid-template-columns: 1.9em 1.9em;
+    grid-template-rows: 1.9em;
+    gap: 0.95em;
     justify-self: end;
 }
 
@@ -112,13 +150,17 @@
 .button {
     background-color: #059668; /* Green */
     border: none;
-    padding: 1em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 6px;
-    transition: background-color 0.15s ease,
+    
+    padding: 0;
+    margin: 0;
+    border-radius: 0.3em;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    transition: background-color 0.15s ease;
+    cursor: pointer;
 }
 
 .button:hover,

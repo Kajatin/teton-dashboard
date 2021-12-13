@@ -11,6 +11,11 @@
 
     padding: 0.7em;
     background: #E8E8E8;
+    border-radius: 0.3em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .indicator .bar {

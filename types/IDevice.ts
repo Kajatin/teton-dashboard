@@ -16,7 +16,6 @@ export default interface IDevice {
     is_online?: boolean
     is_active?: boolean
     is_connected_to_vpn?: boolean
-
-    // is_running__release
-    // should_be_running__release
+    is_running__release
+    should_be_running__release
 }

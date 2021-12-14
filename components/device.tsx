@@ -2,11 +2,13 @@ import Link from 'next/link'
 import Indicator from './indicator'
 import styles from '../styles/Device.module.css'
 import IDevice from '../types/IDevice'
-import { getDeviceEnvironmentVariables } from '../lib/api'
+import IRelease from '../types/IRelease'
+import { getDeviceEnvironmentVariables, getBalenaReleaseById } from '../lib/api'
 import React, { useState } from 'react';
 
 export default function Device(props: { device: IDevice }) {
     const [roomBed, setRoomBed] = useState("0.0");
+    const [releaseNumber, setReleaseNumber] = useState("0.0.0");
 
     getDeviceEnvironmentVariables(props.device?.id).then(envVars => {
         var roomNo: number = -1
@@ -20,6 +22,15 @@ export default function Device(props: { device: IDevice }) {
         })
 
         setRoomBed(`${roomNo}.${bedNo}`)
+    })
+
+    const releaseId = props.device.should_be_running__release?.__id ?? props.device.is_running__release.__id
+    getBalenaReleaseById(releaseId).then((release: IRelease) => {
+        if (release.semver) {
+            setReleaseNumber("v" + release.semver)
+        } else {
+            setReleaseNumber(release.commit.substring(0,7))
+        }
     })
 
     const openLiveFeedForDevice = () => {
@@ -50,7 +61,7 @@ export default function Device(props: { device: IDevice }) {
                 <div className={styles.content}>
                     <div className={styles.controls}>
                         <div className={styles.release}>
-                            v0.12.1+rev1
+                            {releaseNumber}
                         </div>
                         <div className={styles.buttons}>
                             <button className={styles.button} onClick={openLiveFeedForDevice}>🎥</button>

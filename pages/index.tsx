@@ -2,7 +2,6 @@ import Head from 'next/head'
 import useSWR from 'swr'
 import styles from '../styles/Home.module.css'
 import Device from '../components/device'
-import { getBalenaDevicesForFleet } from '../lib/api'
 
 export default function Home() {
     const { data, error, mutate, isValidating } = useSWR('/api/devices', url => fetch(url).then(r => r.json()), { refreshInterval: 10000 })

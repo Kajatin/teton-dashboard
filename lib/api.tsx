@@ -59,3 +59,10 @@ export async function getDeviceEnvironmentVariables(device: number) {
     const data = await fetchAPI(url)
     return data.d
 }
+
+export async function getBalenaReleaseById(id: number) {
+    const url = `https://api.balena-cloud.com/v6/release(${id})`
+
+    const data = await fetchAPI(url)
+    return data.d[0]
+}

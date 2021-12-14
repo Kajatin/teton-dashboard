@@ -21,7 +21,11 @@ export default function Home() {
             <main>
                 <div className={styles.grid}>
                     {
-                        data?.map(device => {
+                        data?.sort((lhs, rhs) => {
+                            if (lhs.device_name.toLowerCase() < rhs.device_name.toLowerCase()) return -1
+                            if (lhs.device_name.toLowerCase() > rhs.device_name.toLowerCase()) return 1
+                            return 0
+                        }).map(device => {
                             return <Device key={device.id} device={device} />
                         })
                     }

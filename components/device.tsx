@@ -3,14 +3,19 @@ import Indicator from './indicator'
 import styles from '../styles/Device.module.css'
 import IDevice from '../types/IDevice'
 import IRelease from '../types/IRelease'
-import { getDeviceEnvironmentVariables, getBalenaReleaseById } from '../lib/api'
 import React, { useState } from 'react';
 
 export default function Device(props: { device: IDevice }) {
     const [roomBed, setRoomBed] = useState("0.0");
     const [releaseNumber, setReleaseNumber] = useState("0.0.0");
 
-    getDeviceEnvironmentVariables(props.device?.id).then(envVars => {
+    fetch(`/api/get/environment_vars?id=${props.device?.id}`, {
+        method: 'GET',
+        cache: 'no-cache',
+        referrerPolicy: 'no-referrer',
+    }).then(response => {
+        return response.json()
+    }).then(envVars => {
         var roomNo: number = -1
         var bedNo: number = -1
         envVars.map((envVar) => {
@@ -25,7 +30,13 @@ export default function Device(props: { device: IDevice }) {
     })
 
     const releaseId = props.device.should_be_running__release?.__id ?? props.device.is_running__release.__id
-    getBalenaReleaseById(releaseId).then((release: IRelease) => {
+    fetch(`/api/get/release?id=${releaseId}`, {
+        method: 'GET',
+        cache: 'no-cache',
+        referrerPolicy: 'no-referrer',
+    }).then(response => {
+        return response.json()
+    }).then((release: IRelease) => {
         if (release.semver) {
             setReleaseNumber("v" + release.semver)
         } else {

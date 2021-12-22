@@ -2,3 +2,102 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(22.5em, 1fr));
 }
+
+.error_overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background: #C4C4C4AF;
+}
+
+.error {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1.5em auto;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    max-height: fit-content;
+    max-width: 25em;
+    
+    border-radius: 0.9em;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: normal;
+
+    transition: 0.3s ease-in-out;
+}
+
+.error:hover,
+.error:active,
+.error:focus {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.redbar {
+    background: #F48066;
+    border-radius: 0.9em 0.9em 0 0;
+}
+
+.error_body {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto auto;
+
+    padding: 2em;
+}
+
+.error_body .oops {
+    font-size: 2em;
+    margin-top: 0.7em;
+    font-weight: bold;
+}
+
+.error_body .wronghere {
+    font-size: 1.5em;
+    margin-bottom: 2em;
+}
+
+.error_body .explanation {
+    font-size: medium;
+    margin: 0 0 4em 0;
+}
+
+.error_body .contact {
+    font-size: medium;
+    margin: 0 0 1.7em 0;
+}
+
+.error_body .button {
+    background-color: #F48066;
+    color: #3E3E3E;
+    border: none;
+
+    padding: 1em;
+    margin: 0;
+    border-radius: 0.3em;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    transition: background-color color 0.15s ease;
+    cursor: pointer;
+}
+
+.error_body .button:hover,
+.error_body .button:active,
+.error_body .button:focus {
+    background-color: #D16148;
+    color: #F4F4F4;
+}

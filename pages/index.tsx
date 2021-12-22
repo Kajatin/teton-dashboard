@@ -45,6 +45,24 @@ export default function Home() {
         </>
     )
 
+    if (!data) return (
+        <>
+            <Head>
+                <title>Teton Dashboard - Loading</title>
+                <link rel="icon" href="/favicon.ico" />
+                <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet' />
+            </Head>
+
+            <main>
+                <div className={styles.lds_ellipsis}>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </main>
+        </>
+    )
 
     return (
         <>

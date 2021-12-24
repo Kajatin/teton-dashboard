@@ -10,6 +10,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "@types/react": "^17.0.30",
+    "js-cookie": "^3.0.1",
     "next": "^11.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",

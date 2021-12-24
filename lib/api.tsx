@@ -1,7 +1,12 @@
+import Cookies from 'js-cookie';
+
 async function fetchAPI(url: string, method: string = 'GET', query: string = null, { variables }: any = {}) {
+    const authorization = Cookies.get('authorization')
+
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_BALENA_API_TOKEN
+        // 'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_BALENA_API_TOKEN
+        'Authorization': 'Bearer ' + authorization
     }
 
     // Interact with the Balena API

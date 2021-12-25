@@ -28,7 +28,7 @@ export default function Home() {
 
             <main>
                 <div className={styles.error_overlay}>
-                    <div className={styles.error} style={ error.status == 401 ? {'max-width': '30em'} : {} }>
+                    <div className={styles.error}>
                         <div className={styles.redbar} />
                         <div className={styles.error_body}>
                             <div className={styles.oops}>

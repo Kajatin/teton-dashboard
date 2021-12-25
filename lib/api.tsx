@@ -1,13 +1,10 @@
 import Cookies from 'js-cookie';
 
-async function fetchAPI(url: string, method: string = 'GET', query: string = null, { variables }: any = {}) {
-    // Cannot get cookie from server side...
-    const authorization = Cookies.get('authorization')
-
+async function fetchAPI(url: string, auth: string = undefined, method: string = 'GET', query: string = undefined, { variables }: any = {}) {
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_BALENA_API_TOKEN
-        // 'Authorization': 'Bearer ' + authorization
+        // 'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_BALENA_API_TOKEN
+        'Authorization': 'Bearer ' + auth
     }
 
     // Interact with the Balena API
@@ -29,46 +26,46 @@ async function fetchAPI(url: string, method: string = 'GET', query: string = nul
     return json
 }
 
-export async function getBalenaFleetByName(name: string = "Nightingale-NFS") {
+export async function getBalenaFleetByName(name: string = "Nightingale-NFS", auth: string = undefined) {
     const url = 'https://api.balena-cloud.com/v6/application?\$filter=app_name eq \'' + name + '\''
 
-    const data = await fetchAPI(url)
+    const data = await fetchAPI(url, auth)
     return data.d[0]
 }
 
-export async function getBalenaFleetIdByName(name: string = "Nightingale-NFS") {
-    const fleet = await getBalenaFleetByName(name)
+export async function getBalenaFleetIdByName(name: string = "Nightingale-NFS", auth: string = undefined) {
+    const fleet = await getBalenaFleetByName(name, auth)
     return fleet?.id
 }
 
-export async function getBalenaDevicesForFleet(fleet: number = null) {
+export async function getBalenaDevicesForFleet(fleet: number = undefined, auth: string = undefined) {
     if (!fleet) {
-        fleet = await getBalenaFleetIdByName()
+        fleet = await getBalenaFleetIdByName("Nightingale-NFS", auth)
     }
 
     const url = 'https://api.balena-cloud.com/v6/device?\$filter=belongs_to__application eq ' + fleet
 
-    const data = await fetchAPI(url)
+    const data = await fetchAPI(url, auth)
     return data.d
 }
 
-export async function getBalenaDeviceById(id: number) {
+export async function getBalenaDeviceById(id: number, auth: string = undefined) {
     const url = `https://api.balena-cloud.com/v6/device(${id})`
 
-    const data = await fetchAPI(url)
+    const data = await fetchAPI(url, auth)
     return data.d[0]
 }
 
-export async function getDeviceEnvironmentVariables(device: number) {
+export async function getDeviceEnvironmentVariables(device: number, auth: string = undefined) {
     const url = 'https://api.balena-cloud.com/v6/device_environment_variable?\$filter=device eq ' + device
 
-    const data = await fetchAPI(url)
+    const data = await fetchAPI(url, auth)
     return data.d
 }
 
-export async function getBalenaReleaseById(id: number) {
+export async function getBalenaReleaseById(id: number, auth: string = undefined) {
     const url = `https://api.balena-cloud.com/v6/release(${id})`
 
-    const data = await fetchAPI(url)
+    const data = await fetchAPI(url, auth)
     return data.d[0]
 }

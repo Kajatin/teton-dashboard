@@ -5,7 +5,7 @@ export default function Detail() {
     const router = useRouter()
     const { id } = router.query
 
-    const { data, error, mutate, isValidating } = useSWR(`/api/device?id=${id}`, url => fetch(url).then(r => r.json()), { refreshInterval: 10000 })
+    const { data, error, mutate, isValidating } = useSWR(`/api/get/device?id=${id}`, url => fetch(url).then(r => r.json()), { refreshInterval: 10000 })
 
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>

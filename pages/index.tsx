@@ -4,7 +4,15 @@ import styles from '../styles/Home.module.css'
 import Device from '../components/device'
 
 export default function Home() {
-    const { data, error, mutate, isValidating } = useSWR('/api/devices', url => fetch(url).then(r => r.json()), { refreshInterval: 10000 })
+    const { data, error, mutate, isValidating } = useSWR('/api/get/devices', url => fetch(url).then(r => {
+        if (!r.ok) {
+            const error = new Error('An error occurred while fetching the data.')
+            error['status'] = r.status
+            throw error
+        }
+
+        return r.json()
+    }), { refreshInterval: 10000 })
 
     const refreshPage = () => {
         window.location.reload();
@@ -20,22 +28,23 @@ export default function Home() {
 
             <main>
                 <div className={styles.error_overlay}>
-                    <div className={styles.error}>
+                    <div className={styles.error} style={ error.status == 401 ? {'max-width': '30em'} : {} }>
                         <div className={styles.redbar} />
                         <div className={styles.error_body}>
                             <div className={styles.oops}>
-                                Oops!
+                                { error.status == 401 ? 'Unauthorized!' : 'Oops!' }
                             </div>
                             <div className={styles.wronghere}>
-                                Something's wrong here...
+                                { error.status == 401 ? 'You don\'t have the authorization to access this page.' : 'Something\'s wrong here...' }
                             </div>
                             <div className={styles.explanation}>
-                                Could not fetch information about the devices from the Balena servers.
+                                { error.status == 401 ? 'Our administrators have been notified about this incident.' : 'Could not fetch information about the devices from the Balena servers.' }
                             </div>
                             <div className={styles.contact}>
-                                Should the issue persist, contact us at <a href="mailto:roland@teton.ai">roland@teton.ai</a>.
+                                { error.status == 401 ? 'If you believe you should have access, ' : 'Should the issue persist, ' }
+                                contact us at <a href="mailto:roland@teton.ai">roland@teton.ai</a>.
                             </div>
-                            <button className={styles.button} onClick={refreshPage}>
+                            <button className={styles.button} style={ error.status == 401 ? {visibility: 'hidden'} : {} } onClick={refreshPage}>
                                 <b>RELOAD</b>
                             </button>
                         </div>

@@ -1,4 +1,4 @@
-import { getBalenaReleaseById } from '../../../lib/api'
+import { getBalenaDeviceById } from '../../../lib/api'
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') return res.status(404).end();
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
     if (!cookies['authorization']) return res.status(401).end();
     
-    const release = await getBalenaReleaseById(id, cookies['authorization'])
+    const device = await getBalenaDeviceById(id, cookies['authorization'])
 
-    res.status(200).json(release)
+    res.status(200).json(device)
 }
